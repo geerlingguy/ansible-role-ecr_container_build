@@ -3,6 +3,7 @@ dependencies: []
 
 galaxy_info:
   author: geerlingguy
+  name: ecr-container-build
   description: ECR docker image build and push management role.
   company: "Midwestern Mac, LLC"
   license: "license (BSD, MIT)"
