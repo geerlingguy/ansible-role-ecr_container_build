@@ -1,0 +1,32 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: geerlingguy
+  description: ECR docker image build and push management role.
+  company: "Midwestern Mac, LLC"
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.4
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: GenericUNIX
+      versions:
+        - all
+  galaxy_tags:
+    - ecr
+    - docker
+    - aws
+    - registry
+    - image
+    - container

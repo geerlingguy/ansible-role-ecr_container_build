@@ -1,0 +1,21 @@
+---
+- name: Set the current image tag.
+  set_fact:
+    image_tag: "{{ outer_item }}"
+
+- name: Print the current tag being pushed.
+  debug: var=image_tag
+
+- name: Apply additional tag if there's more than one.
+  docker_image:
+    name: "{{ ecr_image_name }}:{{ ecr_image_tags.0 }}"
+    repository: "{{ ecr_image_name }}:{{ image_tag }}"
+    state: present
+    pull: false
+  when: ecr_image_tags.0 != image_tag
+
+- name: Push image to ECR.
+  docker_image:
+    name: "{{ ecr_image_name }}:{{ image_tag }}"
+    repository: "{{ ecr_url }}/{{ ecr_image_name }}:{{ image_tag }}"
+    push: true

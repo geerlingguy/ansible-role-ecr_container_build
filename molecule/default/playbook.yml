@@ -1,0 +1,32 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+
+  vars:
+    ecr_image_src_dir: "/tmp/test-container/"
+    ecr_image_name: test-alpine
+    ecr_push: false
+    pip_install_packages:
+      - docker
+
+  pre_tasks:
+    - name: Copy Docker build source dir into test server.
+      copy:
+        src: test-container
+        dest: /tmp
+
+  roles:
+    - role: geerlingguy.docker
+    - role: geerlingguy.pip
+    - role: geerlingguy.ecr-container-build
+
+  post_tasks:
+    - name: Get all available Docker images.
+      command: docker images
+      changed_when: false
+      register: docker_images_output
+
+    - name: Verify our image is present.
+      assert:
+        that: docker_images_output.stdout | search(image_name)

@@ -1,0 +1,19 @@
+---
+- name: Build image.
+  docker_image:
+    path: "{{ ecr_image_src_dir }}"
+    name: "{{ ecr_image_name }}"
+    tag: "{{ ecr_image_tags.0 }}"
+    state: present
+    force: true
+
+- name: Connect to ECR and ensure repo exists.
+  include_tasks: ecr.yml
+  when: ecr_push
+
+- name: Tag and push the image.
+  include_tasks: tag-and-push.yml
+  loop: "{{ ecr_image_tags }}"
+  loop_control:
+    loop_var: outer_item
+  when: ecr_push
