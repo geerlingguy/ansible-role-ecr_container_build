@@ -1,6 +1,6 @@
 # Ansible Role: ECR Container Build
 
-[![Build Status](https://travis-ci.org/geerlingguy/ansible-role-ecr-container-build.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-role-ecr-container-build)
+[![Build Status](https://travis-ci.org/geerlingguy/ansible-role-ecr_container_build.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-role-ecr_container_build)
 
 An Ansible Role that installs builds Docker container images and (optionally) pushes them to AWS ECR Repositories.
 
@@ -51,10 +51,9 @@ Building locally (assuming you already have Docker CE and the `docker` pip packa
         ecr_image_tags: ['latest','1.2.3']
         ecr_account_id: '123456789012'
         pip_install_packages: ['docker']
-
+    
       roles:
-        - role: geerlingguy.ecr-container-build
-
+        - role: geerlingguy.ecr_container_build
 
 Building on a remote server:
 
@@ -73,7 +72,7 @@ Building on a remote server:
       roles:
         - role: geerlingguy.docker
         - role: geerlingguy.pip
-        - role: geerlingguy.ecr-container-build
+        - role: geerlingguy.ecr_container_build
 
 ## License
 

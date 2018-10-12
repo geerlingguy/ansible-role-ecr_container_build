@@ -4,7 +4,7 @@ services: docker
 
 env:
   global:
-    - ROLE_NAME: ecr-container-build
+    - ROLE_NAME: ecr_container_build
   matrix:
     - MOLECULE_DISTRO: centos7
       MOLECULE_DOCKER_COMMAND: /usr/lib/systemd/systemd

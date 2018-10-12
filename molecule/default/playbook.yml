@@ -19,7 +19,7 @@
   roles:
     - role: geerlingguy.docker
     - role: geerlingguy.pip
-    - role: geerlingguy.ecr-container-build
+    - role: geerlingguy.ecr_container_build
 
   post_tasks:
     - name: Get all available Docker images.
