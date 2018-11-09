@@ -1,4 +1,9 @@
 ---
+- name: Log into ECR if required.
+  shell: "$(aws ecr get-login --no-include-email --region {{ ecr_region }})"
+  tags: ['skip_ansible_lint']
+  when: ecr_push or ecr_login_required
+
 - name: Build image.
   docker_image:
     path: "{{ ecr_image_src_dir }}"
@@ -7,8 +12,12 @@
     state: present
     force: true
 
-- name: Connect to ECR and ensure repo exists.
-  include_tasks: ecr.yml
+- name: Ensure ECR repo exists.
+  ecs_ecr:
+    name: "{{ ecr_image_name }}"
+    region: "{{ ecr_region }}"
+    registry_id: "{{ ecr_account_id }}"
+    state: present
   when: ecr_push
 
 - name: Tag and push the image.

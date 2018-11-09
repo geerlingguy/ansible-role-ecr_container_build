@@ -20,7 +20,11 @@ A source directory containing a Dockerfile and any required resources, and the i
 
     ecr_image_tags: ['latest']
 
-TODO.
+The tags to apply to the final image which is pushed to ECR.
+
+    ecr_login_required: false
+
+Set this to `true` if you are using ECR as the source for your container build (e.g. `FROM` in `Dockerfile`).
 
     ecr_push: true
 
@@ -51,9 +55,10 @@ Building locally (assuming you already have Docker CE and the `docker` pip packa
         ecr_image_tags: ['latest','1.2.3']
         ecr_account_id: '123456789012'
         pip_install_packages: ['docker']
-    
+
       roles:
         - role: geerlingguy.ecr_container_build
+
 
 Building on a remote server:
 

@@ -6,6 +6,9 @@ ecr_image_name: namespace/my-project
 # You can add one or more tags.
 ecr_image_tags: ['latest']
 
+# Set this to true if you need to pull from ECR for the image build.
+ecr_login_required: false
+
 # Whether to push the built image to ECR.
 ecr_push: true
 
