@@ -6,7 +6,7 @@ An Ansible Role that installs builds Docker container images and (optionally) pu
 
 ## Requirements
 
-  - Docker CE
+  - Docker
   - Pip packages: `boto3`, `docker`
 
 ## Role Variables

@@ -6,6 +6,12 @@
 - name: Print the current tag being pushed.
   debug: var=image_tag
 
+- name: Ensure there's not already an image locally tagged with the ecr_url.
+  docker_image:
+    name: "{{ ecr_url }}/{{ ecr_image_name }}:{{ image_tag }}"
+    state: absent
+    force: true
+
 - name: Apply additional tag if there's more than one.
   docker_image:
     name: "{{ ecr_image_name }}:{{ ecr_image_tags.0 }}"
