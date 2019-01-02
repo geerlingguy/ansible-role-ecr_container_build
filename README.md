@@ -18,6 +18,10 @@ Available variables are listed below, along with default values (see `defaults/m
 
 A source directory containing a Dockerfile and any required resources, and the image name (typically in the form `namespace/project`) for the docker image that is built.
 
+    ecr_image_buildargs: {}
+
+Build args to pass to the `docker_image` module when building the Docker image. Args should be passed as an object with key-value pairs, e.g. `{ name: value, name2: value2 }`
+
     ecr_image_tags: ['latest']
 
 The tags to apply to the final image which is pushed to ECR.

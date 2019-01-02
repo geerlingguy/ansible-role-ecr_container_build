@@ -6,20 +6,37 @@
   vars:
     ecr_image_src_dir: "/tmp/test-container/"
     ecr_image_name: test-alpine
+    ecr_image_buildargs: {test_var: 'ansible'}
     ecr_push: false
+    docker_install_compose: false
     pip_install_packages:
       - docker
 
   pre_tasks:
     - name: Copy Docker build source dir into test server.
       copy:
-        src: test-container
+        src: "{{ item }}"
         dest: /tmp
+      with_items:
+        - test-container
+        - test-container-buildargs
 
   roles:
     - role: geerlingguy.docker
     - role: geerlingguy.pip
+
     - role: geerlingguy.ecr_container_build
+      vars:
+        ecr_image_src_dir: "/tmp/test-container/"
+        ecr_image_name: test-alpine
+        ecr_push: false
+
+    - role: geerlingguy.ecr_container_build
+      vars:
+        ecr_image_src_dir: "/tmp/test-container-buildargs/"
+        ecr_image_name: test-alpine-buildargs
+        ecr_image_buildargs: {test_var: 'ansible'}
+        ecr_push: false
 
   post_tasks:
     - name: Get all available Docker images.
@@ -29,4 +46,4 @@
 
     - name: Verify our image is present.
       assert:
-        that: docker_images_output.stdout | search(image_name)
+        that: docker_images_output.stdout | search(ecr_image_name)
