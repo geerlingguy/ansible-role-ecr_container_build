@@ -25,3 +25,7 @@
     name: "{{ ecr_image_name }}:{{ image_tag }}"
     repository: "{{ ecr_url }}/{{ ecr_image_name }}:{{ image_tag }}"
     push: true
+  register: push_result
+  until: push_result is success
+  retries: 10
+  delay: 2
