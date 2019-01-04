@@ -14,7 +14,6 @@
 
 - name: Apply additional tag if there's more than one.
   command: "docker tag {{ ecr_image_name }}:{{ ecr_image_tags.0 }} {{ ecr_url }}/{{ ecr_image_name }}:{{ image_tag }}"
-  when: ecr_image_tags.0 != image_tag
 
 - name: Push image to ECR.
   command: "docker push {{ ecr_url }}/{{ ecr_image_name }}:{{ image_tag }}"
