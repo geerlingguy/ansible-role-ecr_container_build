@@ -21,7 +21,7 @@
   when: ecr_image_tags.0 != image_tag
 
 - name: Push image to ECR.
-  shell: "{{ ecr_url }}/{{ ecr_image_name }}:{{ image_tag }}"
+  shell: "docker push {{ ecr_url }}/{{ ecr_image_name }}:{{ image_tag }}"
   register: push_result
   until: push_result is success
   retries: 10
