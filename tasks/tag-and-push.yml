@@ -9,8 +9,8 @@
 - name: Ensure there's not already an image locally tagged with the ecr_url.
   docker_image:
     name: "{{ ecr_url }}/{{ ecr_image_name }}:{{ image_tag }}"
+    force_tag: true
     state: absent
-    force: true
 
 - name: Apply additional tag if there's more than one.
   command: "docker tag {{ ecr_image_name }}:{{ ecr_image_tags.0 }} {{ ecr_url }}/{{ ecr_image_name }}:{{ image_tag }}"
