@@ -11,7 +11,7 @@
       pull: yes
       args: "{{ ecr_image_buildargs | default(omit) }}"
     name: "{{ ecr_image_name }}"
-    state: present 
+    state: present
     source: build
     tag: "{{ ecr_image_tags.0 }}"
 
