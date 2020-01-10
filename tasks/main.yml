@@ -6,12 +6,14 @@
 
 - name: Build image.
   docker_image:
-    path: "{{ ecr_image_src_dir }}"
+    build:
+      path: "{{ ecr_image_src_dir }}"
+      pull: true
+      args: "{{ ecr_image_buildargs | default(omit) }}"
     name: "{{ ecr_image_name }}"
-    tag: "{{ ecr_image_tags.0 }}"
-    buildargs: "{{ ecr_image_buildargs | default(omit) }}"
     state: present
-    force: true
+    source: build
+    tag: "{{ ecr_image_tags.0 }}"
 
 - name: Ensure ECR repo exists.
   ecs_ecr:
