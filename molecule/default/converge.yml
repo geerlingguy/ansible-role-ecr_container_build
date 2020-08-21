@@ -14,7 +14,7 @@
 
   pre_tasks:
     - name: Copy Docker build source dir into test server.
-      copy:
+      copy:  # noqa 208
         src: "{{ item }}"
         dest: /tmp
       with_items:
