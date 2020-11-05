@@ -1,6 +1,6 @@
 # Ansible Role: ECR Container Build
 
-[![Build Status](https://travis-ci.com/geerlingguy/ansible-role-ecr_container_build.svg?branch=master)](https://travis-ci.com/geerlingguy/ansible-role-ecr_container_build)
+[![CI](https://github.com/geerlingguy/ansible-role-ecr_container_build/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/ansible-role-ecr_container_build/actions?query=workflow%3ACI)
 
 An Ansible Role that installs builds Docker container images and (optionally) pushes them to AWS ECR Repositories.
 
